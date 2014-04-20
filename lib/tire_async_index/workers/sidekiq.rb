@@ -2,7 +2,7 @@ module TireAsyncIndex
   module Workers
     class Sidekiq < UpdateIndex
       include ::Sidekiq::Worker
-      sidekiq_options queue: TireAsyncIndex.queue
+      sidekiq_options queue: TireAsyncIndex.queue, retry: false
 
       def self.run(action_type, class_name, id)
         TireAsyncIndex::Workers::Sidekiq
